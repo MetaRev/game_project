@@ -6,23 +6,24 @@ class MagicPlayer:
 	def __init__(self,animation_player):
 		self.animation_player = animation_player
 		self.sounds = {
-    'heal': pygame.mixer.Sound('audio/heal.wav'),
-    'flame': pygame.mixer.Sound('audio/Fire.wav')
-}
+		'heal': pygame.mixer.Sound('../audio/heal.wav'),
+		'flame':pygame.mixer.Sound('../audio/Fire.wav')
+		}
 
 	def heal(self,player,strength,cost,groups):
 		if player.energy >= cost:
+			self.sounds['heal'].play()
 			player.health += strength
 			player.energy -= cost
 			if player.health >= player.stats['health']:
 				player.health = player.stats['health']
 			self.animation_player.create_particles('aura',player.rect.center,groups)
 			self.animation_player.create_particles('heal',player.rect.center,groups)
-			self.sounds['heal'].play()
 
 	def flame(self,player,cost,groups):
 		if player.energy >= cost:
-			#player.energy -= cost
+			player.energy -= cost
+			self.sounds['flame'].play()
 
 			if player.status.split('_')[0] == 'right': direction = pygame.math.Vector2(1,0)
 			elif player.status.split('_')[0] == 'left': direction = pygame.math.Vector2(-1,0)
@@ -40,4 +41,3 @@ class MagicPlayer:
 					x = player.rect.centerx + randint(-TILESIZE // 3, TILESIZE // 3)
 					y = player.rect.centery + offset_y + randint(-TILESIZE // 3, TILESIZE // 3)
 					self.animation_player.create_particles('flame',(x,y),groups)
-			self.sounds['flame'].play()
