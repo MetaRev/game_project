@@ -42,10 +42,6 @@ This is a classic top-down action RPG built with Python and Pygame. Explore, fig
 - Make sure all asset paths use backslashes (`\`) for Windows compatibility.
 - Audio requires working `.wav` and `.ogg` files in the `audio/` directory.
 - The game window size and other settings can be adjusted in `settings.py`.
-
-## Credits
-- Inspired by classic top-down action RPGs
-- Sprites, audio, and code: [Your Name or Team]
-
+- 
 ---
 Enjoy exploring and battling in your own action RPG world! 
